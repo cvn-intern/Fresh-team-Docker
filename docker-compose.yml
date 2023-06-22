@@ -1,0 +1,42 @@
+services:
+  web:
+    build: . 
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/code
+    environment:
+      NODE_ENV: production
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: Abc@1234
+      DB_NAME: test
+    command: npm start
+    networks:
+      - real
+  mysql:
+    image: "mysql:latest"  
+    volumes: 
+      - mysql-volume:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: Abc@1234
+      MYSQL_DATABASE: test
+      MYSQL_USER: khong
+      MYSQL_PASSWORD: khongpass 
+    networks:
+      - real
+  testNetwork:
+    image: "redis:alpine"
+    ports:
+      - "3001:3001"
+    networks:
+      - fake
+volumes:
+  mysql-volume:
+
+networks:
+  real:
+  fake:
