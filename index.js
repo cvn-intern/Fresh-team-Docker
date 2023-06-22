@@ -22,9 +22,10 @@ const test = async () =>{
     return abc[0]
 }
 app.get('/',(req,res)=>{
-    test().then(response => res.send(response.map((item) =>{
-        return `<p>Hello123 : ${item.name}</p> </br>`
-    }).join("")))
+    // test().then(response => res.send(response.map((item) =>{
+    //     return `<p>Hello1234 : ${item.name}</p> </br>`
+    // }).join("")))
+    res.send("fdfggffgdfgddfgfdfg3")
 })
 
 app.listen(port,()=>{
